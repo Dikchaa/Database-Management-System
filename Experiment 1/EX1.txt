@@ -1,0 +1,131 @@
+SQL> create table library(name varchar(30), regno varchar(25), section varchar2(30));
+
+Table created.
+
+SQL> insert into library values('&book','&id','&section');
+Enter value for book: Maths
+Enter value for id: MAB12
+Enter value for section: Engineering
+old   1: insert into library values('&book','&id','&section')
+new   1: insert into library values('Maths','MAB12','Engineering')
+
+1 row created.
+
+SQL> insert into library values('&book','&id','&section');
+Enter value for book: English
+Enter value for id: FL31
+Enter value for section: Languages
+old   1: insert into library values('&book','&id','&section')
+new   1: insert into library values('English','FL31','Languages')
+
+1 row created.
+
+SQL> insert into library values('&book','&id','&section');
+Enter value for book: Data Analysis
+Enter value for id: DW21
+Enter value for section: DSBS
+old   1: insert into library values('&book','&id','&section')
+new   1: insert into library values('Data Analysis','DW21','DSBS')
+
+1 row created.
+
+SQL> SELECT * FROM LIBRARY
+  2  ;
+
+NAME                           REGNO                                            
+------------------------------ -------------------------                        
+SECTION                                                                         
+------------------------------                                                  
+Maths                          MAB12                                            
+Engineering                                                                     
+                                                                                
+English                        FL31                                             
+Languages                                                                       
+                                                                                
+Data Analysis                  DW21                                             
+DSBS                                                                            
+                                                                                
+
+SQL> desc library;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(30)
+ REGNO                                              VARCHAR2(25)
+ SECTION                                            VARCHAR2(30)
+
+SQL> truncate table library;
+
+Table truncated.
+
+SQL> SELECT * FROM LIBRARY;
+
+no rows selected
+
+SQL> desc library;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(30)
+ REGNO                                              VARCHAR2(25)
+ SECTION                                            VARCHAR2(30)
+
+SQL> alter table library add(issue_date date);
+
+Table altered.
+
+SQL> desc library;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(30)
+ REGNO                                              VARCHAR2(25)
+ SECTION                                            VARCHAR2(30)
+ ISSUE_DATE                                         DATE
+
+SQL> alter table library rename column issue_date to issued_on;
+
+Table altered.
+
+SQL> desc library;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(30)
+ REGNO                                              VARCHAR2(25)
+ SECTION                                            VARCHAR2(30)
+ ISSUED_ON                                          DATE
+
+SQL> alter table library modify regno varchar(32);
+
+Table altered.
+
+SQL> desc library;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(30)
+ REGNO                                              VARCHAR2(32)
+ SECTION                                            VARCHAR2(30)
+ ISSUED_ON                                          DATE
+
+SQL> alter table library drop column issued_on;
+
+Table altered.
+
+SQL> desc library;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(30)
+ REGNO                                              VARCHAR2(32)
+ SECTION                                            VARCHAR2(30)
+
+SQL> drop table library;
+
+Table dropped.
+
+SQL> desc library;
+ERROR:
+ORA-04043: object library does not exist 
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off;
